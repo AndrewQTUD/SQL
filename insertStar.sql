@@ -5,8 +5,8 @@ DECLARE
     v_sal copy_emp.salary%TYPE;
 BEGIN
     SELECT NVL(ROUND(salary/1000),0) INTO v_sal
-    FROM copy_emp WHERE employee_id = v_empno
-    FOR I IN 1..v_sal
+    FROM copy_emp WHERE employee_id = v_empno;
+    FOR i IN 1..v_sal
     LOOP
         v_asterisk := v_asterisk || '*';
     END LOOP;
@@ -15,3 +15,4 @@ BEGIN
     WHERE employee_id = v_empno;
     COMMIT;
 END;
+/
