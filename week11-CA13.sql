@@ -1,0 +1,18 @@
+ACCEPT dept NUMBER PROMPT "Dept Number : "
+--set verify off
+DECLARE 
+CURSOR c_emp_cursor IS 
+SELECT last_name, salary, manager_id 
+FROM EMPLOYEES 
+WHERE DEPARTMENT_ID = &dept AND salary < 5000;
+
+BEGIN
+   FOR v_emp in c_emp_cursor LOOP
+    IF (v_emp.manager_id = 101 OR v_emp.manager_id = 124) THEN
+            dbms_output.put_line(v_emp.last_name || ' Due for a raise.');
+    ELSE 
+            dbms_output.put_line(v_emp.last_name || ' Not due for a raise.');
+    END IF;
+   END LOOP;
+END;
+/
